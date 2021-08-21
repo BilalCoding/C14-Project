@@ -28,20 +28,14 @@ function setup() {
   bow.addImage(bowImage); 
   bow.scale = 1;
   
-   score = 0    
+  score = 0;
+
+  redG = new Group();
+  greenG = new Group();
+  blueG = new Group();
+  pinkG = new Group();
+  arrowG = new Group();
 }
-
-redG = new Group();
-greenG = new Group();
-blueG = new Group();
-pinkG = new Group();
-arrowG = new Group();
-
-redG.add(red);
-greenG.add(green);
-blueG.add(blue);
-pinkG.add(pink);
-arrowG.add(arrow);
 
 function draw() {
  background(0);
@@ -79,21 +73,24 @@ function draw() {
   if(arrowG.isTouching(redG)) {
     redG.destroyEach();
     arrowG.destroyEach();
+    score = score + 1;
   }
   else if(arrowG.isTouching(greenG)) {
     greenG.destroyEach();
     arrowG.destroyEach();
+    score = score + 2;
   }
   else if(arrowG.isTouching(blueG)) {
     blueG.destroyEach();
     arrowG.destroyEach();
+    score = score + 3;
   }
   else {
     pinkG.destroyEach();
     arrowG.destroyEach();
+    score = score + 4;
   }
   
-
   drawSprites();
   text("Score: "+ score, 300,50);
 }
@@ -108,6 +105,7 @@ function draw() {
   arrow.velocityX = -4;
   arrow.lifetime = 100;
   arrow.scale = 0.3;
+  arrowG.add(arrow);
 }
 
 function redBalloon() {
@@ -116,6 +114,8 @@ function redBalloon() {
   red.velocityX = 3;
   red.lifetime = 150;
   red.scale = 0.1;
+
+  redG.add(red);
 }
 
 function blueBalloon() {
@@ -124,6 +124,8 @@ function blueBalloon() {
   blue.velocityX = 3;
   blue.lifetime = 150;
   blue.scale = 0.1;
+
+  blueG.add(blue);
 }
 
 function greenBalloon() {
@@ -132,6 +134,8 @@ function greenBalloon() {
   green.velocityX = 3;
   green.lifetime = 150;
   green.scale = 0.1;
+  
+  greenG.add(green);
 }
 
 function pinkBalloon() {
@@ -139,5 +143,6 @@ function pinkBalloon() {
   pink.addImage(pink_balloonImage);
   pink.velocityX = 3;
   pink.lifetime = 150;
-  pink.scale = 1
+
+  pinkG.add(pink);
 }
