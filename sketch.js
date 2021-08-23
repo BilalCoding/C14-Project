@@ -85,7 +85,7 @@ function draw() {
     arrowG.destroyEach();
     score = score + 3;
   }
-  else {
+  else if(arrowG.isTouching(pinkG)) {
     pinkG.destroyEach();
     arrowG.destroyEach();
     score = score + 4;
